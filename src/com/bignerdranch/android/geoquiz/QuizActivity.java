@@ -13,6 +13,7 @@ public class QuizActivity extends Activity {
     Button mTrueButton;
     Button mFalseButton;
     Button mNextButton;
+    Button mPrevButton;
 
     TextView mQuestionTextView;
     
@@ -52,6 +53,13 @@ public class QuizActivity extends Activity {
         setContentView(R.layout.activity_quiz);
 
         mQuestionTextView = (TextView)findViewById(R.id.question_text_view);
+        mQuestionTextView.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                mCurrentIndex = (mCurrentIndex + 1) % mAnswerKey.length; 
+                updateQuestion();
+            }
+        });
         //set text to first question in array
 
         mTrueButton = (Button)findViewById(R.id.true_button);
@@ -75,9 +83,17 @@ public class QuizActivity extends Activity {
         mNextButton.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                mCurrentIndex = (mCurrentIndex + 1) % mAnswerKey.length; 
+                mCurrentIndex = (mCurrentIndex + 1) > mAnswerKey.length? (mCurrentIndex + 1-mAnswerKey.length) : mAnswerKey.length % mAnswerKey.length; 
                 updateQuestion();
             }
+        });
+        mPrevButton = (Button)findViewById(R.id.prev_button);
+        mPrevButton.setOnClickListener(new View.OnClickListener() {
+        	@Override
+        	public void onClick(View v) {
+        		mCurrentIndex = (mCurrentIndex - 1) < 0 ? (mAnswerKey.length+1-mCurrentIndex) : (mCurrentIndex - 1) % mAnswerKey.length; 
+        		updateQuestion();
+        	}
         });
         
         updateQuestion();
