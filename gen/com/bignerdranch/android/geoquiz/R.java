@@ -53,6 +53,7 @@ public final class R {
         public static final int question_asia=0x7f05000c;
         public static final int question_mideast=0x7f050009;
         public static final int question_oceans=0x7f050008;
+        public static final int question_panyu=0x7f05000d;
         public static final int true_button=0x7f050001;
     }
     public static final class style {

@@ -23,7 +23,8 @@ public class QuizActivity extends Activity {
             new TrueFalse(R.string.question_mideast, false),
             new TrueFalse(R.string.question_africa, false),
             new TrueFalse(R.string.question_americas, true),
-            new TrueFalse(R.string.question_asia, true)
+            new TrueFalse(R.string.question_asia, true),
+            new TrueFalse(R.string.question_panyu, true)
     };
     
     int mCurrentIndex = 0;
