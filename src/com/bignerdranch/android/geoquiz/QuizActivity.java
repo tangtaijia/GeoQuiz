@@ -83,7 +83,7 @@ public class QuizActivity extends Activity {
         mNextButton.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                mCurrentIndex = (mCurrentIndex + 1) > mAnswerKey.length? (mCurrentIndex + 1-mAnswerKey.length) : mAnswerKey.length % mAnswerKey.length; 
+            	mCurrentIndex = (mCurrentIndex + 1) % mAnswerKey.length; 
                 updateQuestion();
             }
         });
@@ -91,7 +91,10 @@ public class QuizActivity extends Activity {
         mPrevButton.setOnClickListener(new View.OnClickListener() {
         	@Override
         	public void onClick(View v) {
-        		mCurrentIndex = (mCurrentIndex - 1) < 0 ? (mAnswerKey.length+1-mCurrentIndex) : (mCurrentIndex - 1) % mAnswerKey.length; 
+        		if((mCurrentIndex - 1) < 0)
+        			mCurrentIndex = (mAnswerKey.length-1-mCurrentIndex);
+        		else
+        			mCurrentIndex = (mCurrentIndex - 1) % mAnswerKey.length;
         		updateQuestion();
         	}
         });
