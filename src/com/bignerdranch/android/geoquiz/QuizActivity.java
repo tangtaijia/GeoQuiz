@@ -32,6 +32,8 @@ public class QuizActivity extends Activity {
     
     private static final String TAG = "QuizActivity";
     
+    private static final String KEY_INDEX = "index";
+    
     private void updateQuestion() {
         int question = mAnswerKey[mCurrentIndex].getQuestion();
         mQuestionTextView.setText(question);
@@ -105,6 +107,8 @@ public class QuizActivity extends Activity {
         	}
         });
         
+        if (null != savedInstanceState)
+        	mCurrentIndex = savedInstanceState.getInt(KEY_INDEX);
         updateQuestion();
     }
 
@@ -143,6 +147,13 @@ public class QuizActivity extends Activity {
     protected void onDestroy() {
     	super.onDestroy();
     	Log.d(TAG, "onDestroy() called");
+    }
+    
+    @Override
+    protected void onSaveInstanceState(Bundle outState) {
+    	super.onSaveInstanceState(outState);
+    	Log.i(TAG,"onSaveInstanceState() called");
+    	outState.putInt(KEY_INDEX, mCurrentIndex);
     }
 
 }
